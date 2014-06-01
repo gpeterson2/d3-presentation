@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}D3 Bar Chart{% endblock %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/bar_chart.css' />
+    <script str="static/exmaples/bar_chart.js"></script>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('display_index') }}">Back</a>
+
+    <div class="option">
+        <label for="DataAmount">
+            Amount of Data Points
+            <input id="DataAmount" class="DataAmount" type="text" value="10" />
+        </label>
+
+        <label for="ShowBar">
+            Show Bar Graph
+            <input id="ShowBar" class="ShowBar" type="checkbox" checked="checked" />
+        </label>
+
+        <label for="ShowLine">
+            Show Line Graph
+            <input id="ShowLine" class="ShowLine" type="checkbox" checked="checked" />
+        </label>
+
+        <label for="ShowNumbers">
+            Show Numbers
+            <input id="ShowNumbers" class="ShowNumbers" type="checkbox" checked="checked" />
+        </label>
+
+        <label for="SortType">
+            Sorting
+            <select id="SortType">
+                <option value="NONE">None</option>
+                <option value="ASC">Asceding</option>
+                <option value="DESC">Descending</option>
+            </select>
+        </label>
+
+        <input class="RandomizeButton" type="button" value="Randomize">
+    </div>
+
+    <div class="display">
+        <div class="data">
+            Data:
+            <ul id="data"></ul>
+        </div>
+
+        <div class="chart"></div>
+
+    </div>
+
+    <script src="/static/js/examples/bar_chart.js"></script>
+{% endblock %}
