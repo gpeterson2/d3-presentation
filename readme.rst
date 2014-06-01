@@ -2,9 +2,13 @@
 D3 Presentation
 ---------------
 
-Code for a presentation on D3.js_
+Code for a presentation on `D3.js <http://d3js.org>`_
 
-.. _D3.js: http://d3js.org
+------
+Slides
+------
+
+`Slides for presentation <http://gpeterson2.github.io/d3-presentation/>`_
 
 ------------
 Requirements
