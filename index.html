@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+    <head>
+        <title>D3 Presentation</title>
+
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+        <link rel="stylesheet" href="static/css/main.css" type="text/css" />
+    </head>
+
+    <body>
+
+        <div class="nav">
+        </div>
+
+        <div class="slides">
+            <div class="slide">
+                <span class="title">What is D3.js?</span>
+            </div>
+
+            <div class="slide">
+                <span class="title">This is D3.js:</span>
+
+                <div id="rounded_rectanges"></div>
+            </div>
+
+            <div class="slide">
+                <span class="title">OK, that's nice, what is it really?</span>
+
+                <p>
+                    D3.js is an api wrapper around SVG elements which makes it
+                    easy to manipulate multiple data points.
+                </p>
+            </div>
+
+            <div class="slide">
+                <span class="title">What is SVG?</span>
+
+                <p>
+                    <a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics">From Wikipedia:</a>
+                </p>
+
+                <p>
+                    Scalable Vector Graphics (SVG) is an XML-based vector image
+                    format for two-dimensional graphics with support for
+                    interactivity and animation. The SVG specification is an
+                    open standard developed by the World Wide Web Consortium
+                    (W3C) since 1999.
+                </p>
+
+                <p>
+                    SVG images and their behaviors are defined in XML text
+                    files. This means that they can be searched, indexed,
+                    scripted, and compressed. As XML files, SVG images can be
+                    created and edited with any text editor, but are more
+                    often created with drawing software.
+                </p>
+
+            </div>
+
+            <div class="slide">
+                <span class="title">Quick SVG primer</span>
+
+                <p>
+                    SVG coordinates: TODO
+                </p>
+
+                <p>
+                    <b>Note</b> The order you add elements is important, later
+                    elements will be added on top of previous elements.
+                </p>
+
+                <p>
+                    Example Elements:
+                    <ul>
+                        <li>svg - The main element on which others are drawn.</li>
+                        <li>g - A grouping element.</li>
+                        <li>rect - A rectangle.</li>
+                        <li>circle - A circle.</li>
+                    </ul>
+                </p>
+
+                <p>
+                    Example Transformations:
+
+                    <ul>
+                        <li>translate - moves the element by x, y coordinates.</li>
+                    </ul>
+                </p>
+
+
+                <p>
+                    <b>Note</b> You can style SVG elements like HTML, and even
+                    add classes, but they use different values.
+
+                    Example styling:
+                    <ul>
+                        <li>fill - The color of an element.</li>
+                        <li>stroke - Then outline of an element.</li>
+                        <li>stroke-width - Then size of the outline.</li>
+                    </ul>
+
+                </p>
+            </div>
+
+            <div class="slide">
+                <span class="title">Quick D3.js primer</span>
+
+                <ul>
+                    <li>
+                        select/selectAll: Selects HTML elements. The main difference
+                        between this and other libraries is that D3's select can also
+                        select <i>elements which do not yet exist</i>.
+                    </li>
+
+                    <li>data.enter: Binds data to a selected element.</li>
+            </div>
+
+            <div class="slide">
+                <span class="title">Why use D3.js?</span>
+
+                <ul>
+                   <li>You can create any kind of chart you want</li>
+                </ul>
+
+            </div>
+
+            <div class="slide">
+                <span class="title">Why not use D3.js?</span>
+
+                <ul>
+                    <li>IE8 does not support the SVG element.</li>
+                    <li>
+                        <p>
+                            You <i>can</i> create anything, but you also
+                            <b>have to</b>.
+                        </p>
+
+                        <p>
+                            While there are utilities for say figuing out how to
+                            split up the slices of a pie chart, there is no
+                            default legend element.
+                        </p>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <script src="static/js/slides.js"></script>
+        <script src="static/js/rounded_rectangles.js"></script>
+    </body>
+</html>
