@@ -28,6 +28,28 @@ def get_random_list(data_count):
     data = [random.randint(0, 100) for i in range(data_count)]
     return jsonify({ 'data': data })
 
+@app.route('/doughnut')
+def display_doughnut_chart():
+    ''' Display doughnut chart page. '''
+
+    return render_template('doughnut.html')
+
+@app.route('/doughnut/data')
+def get_doughnut_items():
+    ''' Return an array of items with random values. '''
+
+    # Helper so you don't repeat 1, 100.
+    get_random = lambda: random.randint(1, 100);
+
+    data = [
+        {'name': 'MEGA', 'value': get_random(), 'color': '#CC0033'},
+        {'name': 'ULTRA', 'value': get_random(), 'color': '#CC33CC'},
+        {'name': 'EPIC', 'value': get_random(), 'color': '#CC6600'},
+    ]
+
+    return jsonify({'items': data})
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
 

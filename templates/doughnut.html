@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}D3 Doughnut Chart{% endblock %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/doughnut.css' />
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('display_index') }}">Back</a>
+
+    <input type="submit" id="Randomize" value="Randomize Data" />
+
+    <div class="clear-fix"></div>
+
+    <div class="ItemsContainer ">
+        <h2>Items</h2>
+        <ul id="ItemList"></ul>
+    </div>
+
+    <div class="ChartContainer">
+        <h2>Chart</h2>
+        <div id="container"></div>
+    </div>
+
+    <script src="/static/js/examples/doughnut.js"></script>
+
+{% endblock %}

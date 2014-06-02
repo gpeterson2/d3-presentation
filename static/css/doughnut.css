@@ -1,0 +1,27 @@
+.ItemsContainer {
+    float: left;
+    margin-right: 25px;
+}
+.ChartContainer {
+    float: left;
+}
+
+/* SVG */
+.arc {
+    stroke: white;
+    stroke-width: 1;
+}
+.LegendDisplayValues {
+    fill: white;
+}
+.LegendDisplayNames {
+    fill: black;
+    font-weight: 'bold';
+}
+.Title {
+    text-anchor: middle;
+}
+.Total {
+    font-size: 20;
+}
+
