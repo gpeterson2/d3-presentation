@@ -1,3 +1,4 @@
+/* jshint laxcomma: true */
 /* global jQuery, d3 */
 
 
