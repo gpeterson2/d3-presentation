@@ -6,7 +6,6 @@
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
-
         <link rel="stylesheet" href="static/css/main.css" type="text/css" />
     </head>
 
@@ -21,15 +20,31 @@
             </div>
 
             <div class="slide">
-                <span class="title">This is D3.js:</span>
+                <span class="title">This is D3!</span>
 
                 <div id="rounded_rectanges"></div>
+
+                <a href="http://bl.ocks.org/mbostock/1123639">Link to code</a>
             </div>
 
             <div class="slide">
                 <span class="title">OK, that's nice, what is it really?</span>
 
                 <p>
+                    From the site:
+                    <br>
+                    D3.js is a JavaScript library for manipulating documents
+                    based on data. D3 helps you bring data to life using HTML,
+                    SVG and CSS. D3's emphasis on web standards gives you
+                    the full capabilities of modern browsers without tying
+                    yourself to a proprietary framework, combining powerful
+                    visualization components and a data-driven approach to
+                    DOM manipulation.
+                </p>
+
+                <p>
+                    In other words:
+                    <br>
                     D3.js is an api wrapper around SVG elements which makes it
                     easy to manipulate multiple data points.
                 </p>
@@ -64,7 +79,15 @@
                 <span class="title">Quick SVG primer</span>
 
                 <p>
-                    SVG coordinates: TODO
+                    SVG Coordinates:
+
+                    <br>
+
+                    <img src="static/img/Canvas_default_grid.png">
+
+                    <br>
+
+                    * <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Positions">Taken from MDN SVG Tutorial</a>
                 </p>
 
                 <p>
@@ -105,7 +128,7 @@
                 </p>
             </div>
 
-            <div class="slide">
+            <div class="slide d3_primer">
                 <span class="title">Quick D3.js primer</span>
 
                 <ul>
@@ -113,16 +136,120 @@
                         select/selectAll: Selects HTML elements. The main difference
                         between this and other libraries is that D3's select can also
                         select <i>elements which do not yet exist</i>.
+
+                        <br>
+
+                        <div class="code example_select_code">
+                            Example Code:
+                            <pre>
+> d3.selectAll('.example_select li')
+ [ Array(3) ]
+                            </pre>
+                        </div>
+
+
+                        <div class="display example_select">
+                            Example Data:
+                            <ul>
+                                <li>5</li>
+                                <li>7</li>
+                                <li>9</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        data.enter: Binds data to a selected element.
+                        <br>
+                        <b>Note</b> that most functions that update data
+                        take either the specific data you want to update:
+                        "1", or alternately a function that receives
+                        the data point and the index: function(d, i)
+
+                        <br>
+
+                        <div class="code">
+                            Example Code:
+                            <pre>
+> d3.selectAll('.example_enter li')
+    .data([1,2,3])
+    .enter()
+    .append('li')
+    .text(function(d) { return d; })
+ [ Array(3) ]
+                            </pre>
+                        </div>
+
+
+                        <div class="display example_enter">
+                            Example Data:
+                            <ul>
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                            </ul>
+                        </div>
                     </li>
 
-                    <li>data.enter: Binds data to a selected element.</li>
+                    <li>
+                        Scales: Functions that scale the data:
+
+                        <ul>
+                            <li>
+                                Linear - maps one range of data to another.
+
+                                <pre>
+> var scale = d3.scale.linear().domain([0, 10]).range([0,100])
+> scale(0)
+ 0
+> scale(1)
+ 10
+> scale(10)
+ 100
+                                </pre>
+                            </li>
+                            <li>
+                                Ordinal - maps a range of data to set values
+
+                                <pre>
+> var scale = d3.scale.ordinal().domain([1,2,3]).range(['one', 'two', 'three'])
+> scale(1)
+ 'one'
+> scale(2)
+ 'two'
+> scale(3)
+ 'three'
+                                </pre>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
 
             <div class="slide">
                 <span class="title">Why use D3.js?</span>
 
                 <ul>
-                   <li>You can create any kind of chart you want</li>
+                   <li>
+                        <p>
+                            You can create any kind of chart you want.
+                        </p>
+
+                        <p>
+                            This is really the selling point, most other charting
+                            libraries provide a set of predefined charts that you
+                            can use and hopefully provide the options that you
+                            want. With D3.js you can generate anything you can
+                            conceive of.
+                        </p>
+                    </li>
+                    <li>
+                        While it won't replace things like jQuery and Angular
+                        the API is generally logical and consistent.
+                    </li>
+                    <li>
+                        It provides easy ways to generate the more complex SVG
+                        elements such as paths.
+                    </li>
                 </ul>
 
             </div>
@@ -139,11 +266,37 @@
                         </p>
 
                         <p>
-                            While there are utilities for say figuing out how to
+                            While there are utilities for say figuring out how to
                             split up the slices of a pie chart, there is no
                             default legend element.
                         </p>
+
+                        <p>
+                            There may be ways to modularize some of that
+                            functionality, but few of the examples even try.
+                            So it does not seem to be a priority of the
+                            library.
+                        </p>
                     </li>
+                    <li>
+                        In some ways it tries to do too much like API calls
+                        for things such as JSON data which aren't strictly
+                        necessary for charting. It is interesting that you
+                        <i>can</i> do everything you need in d3.js, but it
+                        seems like some of that functionality should be passed
+                        on to another library that is meant for it rather than
+                        reinventing the wheel.
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="slide">
+                <span class="title">Resources</span>
+
+                <ul>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG">Mozilla Developer Network: SVG reference</a></li>
+                    <li><a href="http://d3js.org/">D3.js</a></li>
                 </ul>
 
             </div>

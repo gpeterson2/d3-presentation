@@ -1,7 +1,12 @@
+body {
+    /*background-color: #9ff;*/
+}
+
 .title {
     font-weight: bold;
     display: block;
     text-align: center;
+    font-size: 200%;
 }
 
 .nav, .slides {
@@ -22,10 +27,25 @@
     display: block;
     text-align: center;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     width: 80%;
 }
 
 .page_nav a {
     margin: 1px;
+    clear: both;
+}
+
+.d3_primer .code, .d3_primer .display  {
+    float: left;
+}
+
+.d3_primer .display {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+}
+
+.d3_primer li {
+    clear: both;
 }
