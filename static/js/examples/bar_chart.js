@@ -26,10 +26,14 @@
         .attr('height', heigth + margin.top + margin.bottom)
 
     // Set the overall scales
-    // TODO - explain why these scales were choosen.
+    // Ordinal scales will have a set range, where the input maps directly to
+    // an output, in this case 0 to the width.
     var xScale = d3.scale.ordinal()
         .rangeRoundBands([0, width], 0.1);
 
+    // Linear scales map the range to a function generally used for things
+    // such as height. It will transform any the values to match the specified
+    // height.
     var yScale = d3.scale.linear()
         .range([heigth, 0]);
 
@@ -104,6 +108,10 @@
     var colors = ['red', 'blue', 'yellow'];
 
     // Actually displays the charts.
+    //
+    // There may be better ways of doing this, but the basic plan is to wipe
+    // away anything that existed before and redraw the chart when things
+    // change.
     var generate_charts = function(dataset, options) {
 
         // Grab a local copy of the overall data.
@@ -111,13 +119,15 @@
 
         // If neither sort is selected, then stick with the original order.
         var sort_type = options.SortType;
+        // d3 defines functions for ascending and descending.
         if (sort_type == 'ASC') {
             local_data.sort(d3.ascending);
         } else if (sort_type == 'DESC') {
             local_data.sort(d3.descending);
         }
 
-        // Display the data.
+        // Display the data. There are probably d3 ways to do this, but I
+        // went with (probably inefficient) jQuery.
         var el = $('#data');
         el.html('');
         var data_display = []
@@ -156,6 +166,7 @@
             })
             .attr('x2', function(d) {
                 // Use rangeband so it goes to the end of the axis
+                // otherwise it will stop at the last data point.
                 return xScale(local_data.length) + xScale.rangeBand();
             })
             .attr('y1', function(d) { return yScale(80); })
@@ -197,7 +208,6 @@
                 })
                 .y(function(d) { return yScale(d); });
 
-            // Transitions still don't seem to do anything.
             group.selectAll('path')
                 .data([local_data])
                 .enter().append('path')
@@ -244,7 +254,9 @@
 
         // Add axis
 
-        // Limit the displayed amout of ticks based on data size
+        // Added just to remove the clutter from the axis.
+        //
+        // Limit the displayed amount of ticks based on data size
         // Should only return 10 total no matter how big the dataset.
         // Or just set it as as Logarithmic scale?
         xAxis.tickFormat(function(d) {
@@ -255,6 +267,7 @@
             return '';
         });
 
+        // Add the axis.
         group.append('g')
             .attr('class', 'x axis')
             .attr('transform', 'translate(0, ' + heigth + ')')
@@ -265,7 +278,7 @@
             .call(yAxis);
     }
 
-    // Get some inital data.
+    // Get some initial data.
     get_data(10);
 
 }(jQuery, d3))

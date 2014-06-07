@@ -9,6 +9,9 @@
 */
 
 (function($) {
+    // TODO - the heights and widths were were chosen arbitrarily based on
+    // what looked best when testing, they should probably be reviewed to
+    // actually make logical sense.
     var width = 400;
     var height = 200;
     var legendWidth = 100;
@@ -20,6 +23,7 @@
     // on, rather than hard-coding them here. Still define the color
     // ordinal here.
     var color = d3.scale.ordinal();
+        // We could specify a set list of colors here:
         //.range(['#98abc5', '#8a89a6', '#7b6888', '#6b486b', '#a05d56', '#d0743c', '#ff8c00']);
 
     // Helper functions to figure out the slice later on.
@@ -41,11 +45,14 @@
         .append('g')
             .attr('transform', function(d, i) {
                 // Want to reserve some space for the legend.
+                // TODO - this was arbitrarily done based on what looked good
+                // it really should be reviewed.
                 var w = (width / 2) - legendWidth;
                 var h = height / 2;
                 return 'translate(' + w + ',' + h + ')';
             });
 
+    // Load the data.
     var load_data = function() {
         $.ajax({
             dataType: "json"
@@ -60,6 +67,7 @@
         });
     };
 
+    // Run when clicked on the randomize button.
     $('#Randomize').click(function() {
         load_data();
     });
@@ -74,6 +82,8 @@
     };
 
     // Updates the data and title.
+    // The basic plan is to clear away the old chart and then redraw it. There
+    // may be better solutions to this.
     var redrawChart = function(data) {
         var total = getTotal(data);
 
@@ -84,11 +94,6 @@
             var item = $('<li></li>').text(d.name + ': ' + d.value);
             item_list.append(item);
         });
-
-        //******************************************************//
-        // NOTE - SVG elements place subsequent items on top
-        //        of previoius elements. So order matters.
-        //******************************************************//
 
         // Clear old data
         svg.selectAll('.Title').remove();
@@ -115,7 +120,8 @@
             .style('fill', function(d) {
                 return color(d.data.name);
             });
-       // Add title. This is in two sections because you can't
+
+        // Add title. This is in two sections because you can't
         // easily add newlines to SVG text. Or if you can I stopped
         // looking before finding it.
         //
@@ -142,6 +148,8 @@
                 var h = -(legendHeight / 2);
                 return 'translate(' + w + ',' + h + ')';
             });
+
+        // TODO - find a better place to define these constants.
 
         // Define the specific items.
         var lengendItemHeight = 25; // TODO move this up.
